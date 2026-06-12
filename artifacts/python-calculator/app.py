@@ -59,6 +59,13 @@ def square():
     st.session_state.display = str(int(result)) if result == int(result) else str(result)
     st.session_state.waiting = True
 
+def cube():
+    val = float(st.session_state.display)
+    result = val ** 3
+    st.session_state.expression = str(st.session_state.display) + "³ ="
+    st.session_state.display = str(int(result)) if result == int(result) else str(result)
+    st.session_state.waiting = True
+
 OP_LABELS = {"+": "+", "-": "−", "*": "×", "/": "÷"}
 
 def calculate(a, b, op):
@@ -114,7 +121,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-col1, col2, col3, col4, col5 = st.columns(5)
+col1, col2, col3, col4, col5, col6 = st.columns(6)
 
 with col1:
     if st.button("AC", use_container_width=True, key="clear"):
@@ -133,6 +140,10 @@ with col4:
         square()
         st.rerun()
 with col5:
+    if st.button("x³", use_container_width=True, key="cb"):
+        cube()
+        st.rerun()
+with col6:
     if st.button("÷", use_container_width=True, key="div"):
         set_operator("/")
         st.rerun()
