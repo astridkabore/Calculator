@@ -52,6 +52,13 @@ def percent():
     result = val / 100
     st.session_state.display = str(int(result)) if result == int(result) else str(result)
 
+def square():
+    val = float(st.session_state.display)
+    result = val ** 2
+    st.session_state.expression = str(st.session_state.display) + "² ="
+    st.session_state.display = str(int(result)) if result == int(result) else str(result)
+    st.session_state.waiting = True
+
 OP_LABELS = {"+": "+", "-": "−", "*": "×", "/": "÷"}
 
 def calculate(a, b, op):
@@ -107,7 +114,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
     if st.button("AC", use_container_width=True, key="clear"):
@@ -122,21 +129,25 @@ with col3:
         percent()
         st.rerun()
 with col4:
+    if st.button("x²", use_container_width=True, key="sq"):
+        square()
+        st.rerun()
+with col5:
     if st.button("÷", use_container_width=True, key="div"):
         set_operator("/")
         st.rerun()
 
-col5, col6, col7, col8 = st.columns(4)
-with col5:
+colA, colB, colC, colD = st.columns(4)
+with colA:
     if st.button("7", use_container_width=True, key="7"):
         input_digit(7); st.rerun()
-with col6:
+with colB:
     if st.button("8", use_container_width=True, key="8"):
         input_digit(8); st.rerun()
-with col7:
+with colC:
     if st.button("9", use_container_width=True, key="9"):
         input_digit(9); st.rerun()
-with col8:
+with colD:
     if st.button("×", use_container_width=True, key="mul"):
         set_operator("*"); st.rerun()
 
