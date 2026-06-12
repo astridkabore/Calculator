@@ -108,8 +108,8 @@ def equals():
 
 expr_text = st.session_state.expression if st.session_state.expression else " "
 st.markdown(f"""
-<div style="background:#1e293b;border-radius:12px;padding:16px 20px;margin-bottom:16px;min-height:90px;text-align:right;">
-    <div style="color:#64748b;font-size:14px;min-height:20px;">{expr_text}</div>
+<div style="background:#e91e8c;border-radius:12px;padding:16px 20px;margin-bottom:16px;min-height:90px;text-align:right;">
+    <div style="color:#ffd6eb;font-size:14px;min-height:20px;">{expr_text}</div>
     <div style="color:white;font-size:48px;font-weight:300;line-height:1.2;word-break:break-all;">{st.session_state.display}</div>
 </div>
 """, unsafe_allow_html=True)

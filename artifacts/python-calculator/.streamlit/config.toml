@@ -7,3 +7,9 @@ baseUrlPath = "python-calculator"
 
 [browser]
 gatherUsageStats = false
+
+[theme]
+primaryColor = "#e91e8c"
+backgroundColor = "#fff0f6"
+secondaryBackgroundColor = "#ffd6eb"
+textColor = "#3d0026"
