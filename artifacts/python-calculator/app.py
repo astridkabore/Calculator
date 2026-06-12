@@ -203,3 +203,4 @@ with col19:
 
 st.divider()
 st.markdown("**How to use:** Enter numbers and tap an operator (+, −, ×, ÷), then tap another number and press **=** to see the result.")
+st.markdown("<p style='text-align:center; color:#e91e8c; font-weight:600; margin-top:16px;'>Made by Astrid 🩷</p>", unsafe_allow_html=True)
