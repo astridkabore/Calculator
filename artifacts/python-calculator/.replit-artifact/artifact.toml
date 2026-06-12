@@ -1,0 +1,18 @@
+kind = "web"
+previewPath = "/python-calculator"
+title = "Python Calculator"
+version = "1.0.0"
+id = "artifacts/python-calculator"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/python-calculator" ]
+localPort = 5000
+
+[services.development]
+run = "streamlit run /home/runner/workspace/artifacts/python-calculator/app.py"
+
+[services.env]
+PORT = "5000"
+BASE_PATH = "/python-calculator"
