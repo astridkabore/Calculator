@@ -2,8 +2,8 @@ import streamlit as st
 
 st.set_page_config(page_title="Python Calculator", page_icon="🔢", layout="centered")
 
-st.title("🔢 Python Calculator")
-st.caption("A simple calculator for beginners")
+st.title("🔢 Astrid's calculator")
+st.caption("My first python project")
 
 if "display" not in st.session_state:
     st.session_state.display = "0"
@@ -110,7 +110,7 @@ st.markdown(f"""
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    if st.button("AC", use_container_width=True, key="ac"):
+    if st.button("AC", use_container_width=True, key="clear"):
         clear_all()
         st.rerun()
 with col2:
