@@ -1,4 +1,5 @@
 import streamlit as st
+import math
 
 st.set_page_config(page_title="Python Calculator", page_icon="🔢", layout="centered")
 
@@ -74,6 +75,40 @@ def square_root():
         result = val ** 0.5
         st.session_state.expression = "√" + str(st.session_state.display) + " ="
         st.session_state.display = str(int(result)) if result == int(result) else str(round(result, 10))
+    st.session_state.waiting = True
+
+def logarithm():
+    val = float(st.session_state.display)
+    if val <= 0:
+        st.session_state.display = "Error"
+    else:
+        result = math.log10(val)
+        st.session_state.expression = "log(" + str(st.session_state.display) + ") ="
+        st.session_state.display = str(int(result)) if result == int(result) else str(round(result, 10))
+    st.session_state.waiting = True
+
+def cosinus():
+    val = float(st.session_state.display)
+    result = math.cos(math.radians(val))
+    st.session_state.expression = "cos(" + str(st.session_state.display) + "°) ="
+    st.session_state.display = str(round(result, 10))
+    st.session_state.waiting = True
+
+def sinus():
+    val = float(st.session_state.display)
+    result = math.sin(math.radians(val))
+    st.session_state.expression = "sin(" + str(st.session_state.display) + "°) ="
+    st.session_state.display = str(round(result, 10))
+    st.session_state.waiting = True
+
+def tangente():
+    val = float(st.session_state.display)
+    if val % 180 == 90:
+        st.session_state.display = "Error"
+    else:
+        result = math.tan(math.radians(val))
+        st.session_state.expression = "tan(" + str(st.session_state.display) + "°) ="
+        st.session_state.display = str(round(result, 10))
     st.session_state.waiting = True
 
 OP_LABELS = {"+": "+", "-": "−", "*": "×", "/": "÷"}
@@ -161,6 +196,20 @@ with col7:
     if st.button("÷", use_container_width=True, key="div"):
         set_operator("/")
         st.rerun()
+
+colL1, colL2, colL3, colL4 = st.columns(4)
+with colL1:
+    if st.button("log", use_container_width=True, key="log"):
+        logarithm(); st.rerun()
+with colL2:
+    if st.button("cos", use_container_width=True, key="cos"):
+        cosinus(); st.rerun()
+with colL3:
+    if st.button("sin", use_container_width=True, key="sin"):
+        sinus(); st.rerun()
+with colL4:
+    if st.button("tan", use_container_width=True, key="tan"):
+        tangente(); st.rerun()
 
 colA, colB, colC, colD = st.columns(4)
 with colA:
