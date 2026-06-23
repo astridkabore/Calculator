@@ -189,7 +189,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
+c1, c2, c3, c4, c5, c6, c7, c8 = st.columns(8)
 with c1:
     if st.button("AC",  use_container_width=True, key="clear"): clear_all(); st.rerun()
 with c2:
@@ -203,18 +203,20 @@ with c5:
 with c6:
     if st.button("√",   use_container_width=True, key="sqrt"):  square_root(); st.rerun()
 with c7:
+    if st.button("×",   use_container_width=True, key="mul"):   set_operator("*"); st.rerun()
+with c8:
     if st.button("÷",   use_container_width=True, key="div"):   set_operator("/"); st.rerun()
 
-c8, c9, c10, c11, c12 = st.columns(5)
-with c8:
+s1, s2, s3, s4, s5 = st.columns(5)
+with s1:
     if st.button("log", use_container_width=True, key="log"):   logarithm();   st.rerun()
-with c9:
+with s2:
     if st.button("ln",  use_container_width=True, key="ln"):    natural_log(); st.rerun()
-with c10:
+with s3:
     if st.button("cos", use_container_width=True, key="cos"):   cosinus();     st.rerun()
-with c11:
+with s4:
     if st.button("sin", use_container_width=True, key="sin"):   sinus();       st.rerun()
-with c12:
+with s5:
     if st.button("tan", use_container_width=True, key="tan"):   tangente();    st.rerun()
 
 c13, c14, c15, c16, c17, c18 = st.columns(6)
