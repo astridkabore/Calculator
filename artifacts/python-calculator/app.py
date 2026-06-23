@@ -11,7 +11,6 @@ for key, default in [
     ("paren_count", 0),
     ("expression", ""),
     ("waiting", False),
-    ("fx_formula", ""),
 ]:
     if key not in st.session_state:
         st.session_state[key] = default
@@ -233,10 +232,9 @@ with c18:
 
 cX1, cX2 = st.columns([3, 1])
 with cX1:
-    st.session_state.fx_formula = st.text_input(
+    st.text_input(
         "f(x) formula",
-        value=st.session_state.fx_formula,
-        placeholder="",
+        key="fx_formula",
         label_visibility="collapsed"
     )
 with cX2:
