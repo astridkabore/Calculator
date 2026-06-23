@@ -11,6 +11,7 @@ for key, default in [
     ("paren_count", 0),
     ("expression", ""),
     ("waiting", False),
+    ("fx_formula", "2*x + 1"),
 ]:
     if key not in st.session_state:
         st.session_state[key] = default
