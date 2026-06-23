@@ -11,7 +11,7 @@ for key, default in [
     ("paren_count", 0),
     ("expression", ""),
     ("waiting", False),
-    ("fx_formula", "2*x + 1"),
+    ("fx_formula", ""),
 ]:
     if key not in st.session_state:
         st.session_state[key] = default
@@ -93,9 +93,11 @@ def sinus():       apply_unary(lambda v: math.sin(math.radians(v)), "sin")
 def tangente():    apply_unary(lambda v: math.tan(math.radians(v)) if v % 180 != 90 else (_ for _ in ()).throw(ValueError()), "tan")
 
 def evaluate_fx():
-    formula = st.session_state.fx_formula
-    x = float(st.session_state.display)
+    formula = st.session_state.fx_formula.strip()
+    if not formula:
+        return
     try:
+        x = float(st.session_state.display)
         result = eval(formula, {"__builtins__": {}}, {"x": x, "math": math})
         st.session_state.expression = f"f({fmt(x)}) = {formula} ="
         st.session_state.display = fmt(result)
