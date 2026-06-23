@@ -92,6 +92,40 @@ def cosinus():     apply_unary(lambda v: math.cos(math.radians(v)), "cos")
 def sinus():       apply_unary(lambda v: math.sin(math.radians(v)), "sin")
 def tangente():    apply_unary(lambda v: math.tan(math.radians(v)) if v % 180 != 90 else (_ for _ in ()).throw(ValueError()), "tan")
 
+def evaluate_fx():
+    formula = st.session_state.fx_formula
+    x = float(st.session_state.display)
+    try:
+        result = eval(formula, {"__builtins__": {}}, {"x": x, "math": math})
+        st.session_state.expression = f"f({fmt(x)}) = {formula} ="
+        st.session_state.display = fmt(result)
+        st.session_state.expr = ""
+        st.session_state.waiting = True
+    except Exception:
+        st.session_state.display = "Error"
+        st.session_state.waiting = True
+
+def compare(op):
+    if not st.session_state.waiting:
+        st.session_state.expr += st.session_state.display + op
+    else:
+        st.session_state.expr += op
+    st.session_state.display = "0"
+    st.session_state.waiting = True
+    st.session_state.expression = nice_expr(st.session_state.expr)
+
+def compare_equals():
+    full = st.session_state.expr + (st.session_state.display if not st.session_state.waiting else "")
+    try:
+        result = eval(full, {"__builtins__": {}}, {"math": math})
+        st.session_state.expression = nice_expr(full) + " ="
+        st.session_state.display = str(result)
+    except Exception:
+        st.session_state.display = "Error"
+    st.session_state.expr = ""
+    st.session_state.paren_count = 0
+    st.session_state.waiting = True
+
 OP_MAP = {"+": "+", "-": "-", "*": "×", "/": "÷", "**": "^"}
 
 def set_operator(op):
@@ -191,9 +225,21 @@ with c15:
 with c16:
     if st.button(")",   use_container_width=True, key="rparen"): close_paren();      st.rerun()
 with c17:
-    st.write("")
+    if st.button("<",   use_container_width=True, key="lt"):    compare("<");        st.rerun()
 with c18:
-    if st.button("×",   use_container_width=True, key="mul"):   set_operator("*");  st.rerun()
+    if st.button(">",   use_container_width=True, key="gt"):    compare(">");        st.rerun()
+
+cX1, cX2 = st.columns([3, 1])
+with cX1:
+    st.session_state.fx_formula = st.text_input(
+        "f(x) formula",
+        value=st.session_state.fx_formula,
+        placeholder="e.g. 2*x + 1",
+        label_visibility="collapsed"
+    )
+with cX2:
+    if st.button("f(x)", use_container_width=True, key="fx"):
+        evaluate_fx(); st.rerun()
 
 r1c1, r1c2, r1c3, r1c4 = st.columns(4)
 with r1c1:
