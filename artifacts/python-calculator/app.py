@@ -111,14 +111,13 @@ def tangente():
         st.session_state.display = str(round(result, 10))
     st.session_state.waiting = True
 
-OP_LABELS = {"+": "+", "-": "−", "*": "×", "/": "÷", "logb": "logₙ"}
+OP_LABELS = {"+": "+", "-": "−", "*": "×", "/": "÷"}
 
 def calculate(a, b, op):
     if op == "+": return a + b
     if op == "-": return a - b
     if op == "*": return a * b
     if op == "/": return None if b == 0 else a / b
-    if op == "logb": return None if b <= 0 or a <= 0 or a == 1 else math.log(b, a)
     return b
 
 def set_operator(op):
@@ -198,20 +197,17 @@ with col7:
         set_operator("/")
         st.rerun()
 
-colL1, colL2, colL3, colL4, colL5 = st.columns(5)
+colL1, colL2, colL3, colL4 = st.columns(4)
 with colL1:
     if st.button("log", use_container_width=True, key="log"):
         logarithm(); st.rerun()
 with colL2:
-    if st.button("logₙ", use_container_width=True, key="logb"):
-        set_operator("logb"); st.rerun()
-with colL3:
     if st.button("cos", use_container_width=True, key="cos"):
         cosinus(); st.rerun()
-with colL4:
+with colL3:
     if st.button("sin", use_container_width=True, key="sin"):
         sinus(); st.rerun()
-with colL5:
+with colL4:
     if st.button("tan", use_container_width=True, key="tan"):
         tangente(); st.rerun()
 
