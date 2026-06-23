@@ -87,6 +87,16 @@ def logarithm():
         st.session_state.display = str(int(result)) if result == int(result) else str(round(result, 10))
     st.session_state.waiting = True
 
+def natural_log():
+    val = float(st.session_state.display)
+    if val <= 0:
+        st.session_state.display = "Error"
+    else:
+        result = math.log(val)
+        st.session_state.expression = "ln(" + str(st.session_state.display) + ") ="
+        st.session_state.display = str(int(result)) if result == int(result) else str(round(result, 10))
+    st.session_state.waiting = True
+
 def cosinus():
     val = float(st.session_state.display)
     result = math.cos(math.radians(val))
@@ -197,17 +207,20 @@ with col7:
         set_operator("/")
         st.rerun()
 
-colL1, colL2, colL3, colL4 = st.columns(4)
+colL1, colL2, colL3, colL4, colL5 = st.columns(5)
 with colL1:
     if st.button("log", use_container_width=True, key="log"):
         logarithm(); st.rerun()
 with colL2:
+    if st.button("ln", use_container_width=True, key="ln"):
+        natural_log(); st.rerun()
+with colL3:
     if st.button("cos", use_container_width=True, key="cos"):
         cosinus(); st.rerun()
-with colL3:
+with colL4:
     if st.button("sin", use_container_width=True, key="sin"):
         sinus(); st.rerun()
-with colL4:
+with colL5:
     if st.button("tan", use_container_width=True, key="tan"):
         tangente(); st.rerun()
 
