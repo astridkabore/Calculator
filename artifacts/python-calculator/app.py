@@ -234,7 +234,7 @@ with cX1:
     st.session_state.fx_formula = st.text_input(
         "f(x) formula",
         value=st.session_state.fx_formula,
-        placeholder="e.g. 2*x + 1",
+        placeholder="",
         label_visibility="collapsed"
     )
 with cX2:
