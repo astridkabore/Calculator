@@ -70,6 +70,13 @@ def insert_pi():
     st.session_state.display = fmt(math.pi)
     st.session_state.waiting = False
 
+def insert_varx():
+    if st.session_state.display == "0" or st.session_state.waiting:
+        st.session_state.display = "X"
+    else:
+        st.session_state.display += "X"
+    st.session_state.waiting = False
+
 
 def apply_unary(fn_raw, fn_nice):
     val_str = st.session_state.display
@@ -219,7 +226,7 @@ with s4:
 with s5:
     if st.button("tan", use_container_width=True, key="tan"):   tangente();    st.rerun()
 
-c13, c14, c15, c16, c17, c18 = st.columns(6)
+c13, c14, c15, c16, c17, c18, c19 = st.columns(7)
 with c13:
     if st.button("π",   use_container_width=True, key="pi"):    insert_pi();        st.rerun()
 with c14:
@@ -229,8 +236,10 @@ with c15:
 with c16:
     if st.button(")",   use_container_width=True, key="rparen"): close_paren();      st.rerun()
 with c17:
-    if st.button("<",   use_container_width=True, key="lt"):    compare("<");        st.rerun()
+    if st.button("X",   use_container_width=True, key="varx"):  insert_varx();      st.rerun()
 with c18:
+    if st.button("<",   use_container_width=True, key="lt"):    compare("<");        st.rerun()
+with c19:
     if st.button(">",   use_container_width=True, key="gt"):    compare(">");        st.rerun()
 
 r1c1, r1c2, r1c3, r1c4 = st.columns(4)
