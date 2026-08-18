@@ -190,8 +190,8 @@ def equals():
 
 expr_text = st.session_state.expression if st.session_state.expression else "\u00a0"
 st.markdown(f"""
-<div style="background:#1565c0;border-radius:12px;padding:16px 20px;margin-bottom:16px;min-height:90px;text-align:right;">
-    <div style="color:#dbeafe;font-size:14px;min-height:20px;">{expr_text}</div>
+<div style="background:#c8a27a;border-radius:12px;padding:16px 20px;margin-bottom:16px;min-height:90px;text-align:right;">
+    <div style="color:#f5eadb;font-size:14px;min-height:20px;">{expr_text}</div>
     <div style="color:white;font-size:48px;font-weight:300;line-height:1.2;word-break:break-all;">{st.session_state.display}</div>
 </div>
 """, unsafe_allow_html=True)
@@ -280,4 +280,4 @@ with r4c2:
 
 st.divider()
 st.markdown("**How to use:** Enter numbers and tap an operator (+, −, ×, ÷), then tap another number and press **=** to see the result. Use **(  )** to group expressions, **π** for pi, and **xʸ** to raise to any power.")
-st.markdown("<p style='text-align:center; color:#1565c0; font-weight:600; margin-top:16px;'>Made by Astrid 💙</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; color:#a47c4f; font-weight:600; margin-top:16px;'>Made by Astrid 🤎</p>", unsafe_allow_html=True)
